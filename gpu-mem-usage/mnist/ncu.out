@@ -1,0 +1,97 @@
+==PROF== Target process 275519 terminated before first instrumented API call.
+==PROF== Connected to process 275517 (/usr/bin/python3.8)
+==PROF== Profiling "generateWinogradTilesKernel" - 1: 0%....50%....100% - 1 pass
+==PROF== Profiling "ampere_scudnn_winograd_128x12..." - 2: 0%....50%....100% - 1 pass
+==PROF== Profiling "elementwise_kernel" - 3: 0%....50%....100% - 1 pass
+Net(
+  (conv1): Conv2d(1, 32, kernel_size=(3, 3), stride=(1, 1))
+  (conv2): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1))
+  (dropout1): Dropout(p=0.25, inplace=False)
+  (dropout2): Dropout(p=0.5, inplace=False)
+  (fc1): Linear(in_features=9216, out_features=128, bias=True)
+  (fc2): Linear(in_features=128, out_features=10, bias=True)
+)
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 32, 26, 26]             320
+            Conv2d-2           [-1, 64, 24, 24]          18,496
+           Dropout-3           [-1, 64, 12, 12]               0
+            Linear-4                  [-1, 128]       1,179,776
+           Dropout-5                  [-1, 128]               0
+            Linear-6                   [-1, 10]           1,290
+================================================================
+Total params: 1,199,882
+Trainable params: 1,199,882
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.52
+Params size (MB): 4.58
+Estimated Total Size (MB): 5.10
+----------------------------------------------------------------
+Train Epoch: 1 [0/60000 (0%)]	Loss: 2.300203
+==PROF== Target process 278298 terminated before first instrumented API call.
+
+Test set: Average loss: 2.3051, Accuracy: 1576/10000 (16%)
+
+==PROF== Target process 278435 terminated before first instrumented API call.
+Train Epoch: 2 [0/60000 (0%)]	Loss: 2.557891
+==PROF== Target process 278873 terminated before first instrumented API call.
+
+Test set: Average loss: 2.2701, Accuracy: 965/10000 (10%)
+
+==PROF== Target process 278933 terminated before first instrumented API call.
+==PROF== Disconnected from process 275517
+[275517] python3.8@127.0.0.1
+  void cudnn::winograd::generateWinogradTilesKernel<(int)0, float, float>(cudnn::winograd::GenerateWinogradTilesParams<T2, T3>), 2022-Oct-31 15:43:47, Context 1, Stream 7
+    Section: Command line profiler metrics
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.avg                               inst                          18.96
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.max                               inst                            128
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.sum                               inst                           8192
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.avg                               inst                         113.78
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.max                               inst                            768
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.sum                               inst                          49152
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.avg                               inst                          28.44
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.max                               inst                            192
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.sum                               inst                          12288
+    ---------------------------------------------------------------------- --------------- ------------------------------
+
+  ampere_scudnn_winograd_128x128_ldg1_ldg4_relu_tile148t_nt_v1, 2022-Oct-31 15:43:47, Context 1, Stream 7
+    Section: Command line profiler metrics
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.avg                               inst                           3072
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.max                               inst                          13824
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.sum                               inst                        1327104
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.avg                               inst                       29923.56
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.max                               inst                         134656
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.sum                               inst                       12926976
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.avg                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.max                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.sum                               inst                              0
+    ---------------------------------------------------------------------- --------------- ------------------------------
+
+  void at::native::elementwise_kernel<(int)128, (int)2, void at::native::gpu_kernel_impl<at::native::CUDAFunctor_add<float>>(at::TensorIteratorBase &, const T1 &)::[lambda(int) (instance 1)]>(int, T3), 2022-Oct-31 15:43:48, Context 1, Stream 7
+    Section: Command line profiler metrics
+    ---------------------------------------------------------------------- --------------- ------------------------------
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.avg                               inst                              0
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.max                               inst                              0
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_fadd_pred_on.sum                               inst                              0
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.avg                               inst                         170.67
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.max                               inst                            192
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.min                               inst                            128
+    smsp__sass_thread_inst_executed_op_ffma_pred_on.sum                               inst                          73728
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.avg                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.max                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.min                               inst                              0
+    smsp__sass_thread_inst_executed_op_fmul_pred_on.sum                               inst                              0
+    ---------------------------------------------------------------------- --------------- ------------------------------
+
